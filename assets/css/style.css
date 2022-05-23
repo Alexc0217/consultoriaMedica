@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+* {
+  margin: 0;  
+  box-sizing: border-box;  
+  font-family: 'Raleway', sans-serif;  
+}
+
+.header-bar {
+  height: 75px;
+  width: 100%;
+  padding-top: 10px;
+  background-color: rgb(79, 155, 202);
+  text-align: center;
+  font-size: 50px;
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 5px #efe2e2;
+}
+
+.col {
+  float: left;
+  margin: 50px 40px;
+  width: 28%;
+  height: 35vh;
+  background-color: white;
+  box-shadow: 5px 8px #9a8e8e;
+  border-radius: 30px;
+  border: 1px solid #efe2e2;
+}
+
+.col:hover {
+  box-shadow: 5px 8px rgb(79, 155, 202);
+  transition: all ease-in .6s;
+}
+
+h3 {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 90px;
+}
+
+p {
+  margin-top: 10px;
+  text-align: center;
+  color: rgb(173, 169, 169);
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+}
+
+a, p:hover {
+  cursor: pointer;
+  color: rgb(79, 155, 202);
+}
+
+/*FORM DESIGN*/
+.container {
+  width: 400px;
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.form--hidden {
+  display: none;
+}
+
+.form > *:first-child {
+  margin-top: 0;
+}
+
+.form > *:last-child {
+  margin-bottom: 0;
+}
+
+.form_title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form__message {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form__message--success {
+  color: var(--color-success);
+}
+
+.form__message--error {
+  color: var(--color-error);
+}
+
+.form__input-group {
+  margin-bottom: 1rem;
+}
+
+.form__input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: var(--border-radius);
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.form__input:focus {
+  border-color: var(--color-primary);
+  background: #ffffff;
+}
+
+.form__input--error {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.form__input-error-message {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-error);
+}
+
+.form__button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius);
+  outline: none;
+  cursor: pointer;
+  background: var(--color-primary);
+}
+
+.form__button:hover {
+  background: var(--color-primary-dark);
+}
+
+.form__button:active {
+  transform: scale(0.98);
+}
+
+.form__text {
+  text-align: center;
+}
+
+.form__link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #373131;
+}
+
+.form__link:hover {
+  text-decoration: underline;
+}
+
+.form__input::-webkit-input-placeholder {
+  color: rgb(67, 67, 90);
+  font-weight: bold;
+}
+
+/*Calendario form*/
+.form2{
+  width: 400px;
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  background: #ffffff;
+}
+
+.form2 label {
+	display: block;
+	margin-bottom: 8px;
+}
+.form2 input[type="text"],.form2 input[type="date"],.form2 input[type="datetime"],.form2 input[type="email"],.form2 input[type="number"],.form2 input[type="search"],.form2 input[type="time"],.form2 input[type="url"],.form2 textarea,.form2 select {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background: rgba(255,255,255,.1);
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	margin: 0;
+	outline: 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color: #e8eeef;
+	color:#8a97a0;
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	margin-bottom: 30px;
+}
+
+.form2 input[type="text"]:focus,.form2 input[type="date"]:focus,.form2 input[type="datetime"]:focus,.form2 input[type="email"]:focus,.form2 input[type="number"]:focus,.form2 input[type="search"]:focus,.form2 input[type="time"]:focus,.form2 input[type="url"]:focus,.form2 textarea:focus,.form2 select:focus{
+	background: #d2d9dd;
+}
+.form2 select{
+	-webkit-appearance: menulist-button;
+	height:35px;
+}
+.form2 .number {
+	background: #1abc9c;
+	color: #fff;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 30px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 15px 15px 15px 0px;
+}
+
+.form2 input[type="submit"],
+.form2 input[type="button"]
+{
+	position: relative;
+	display: block;
+	padding: 19px 39px 18px 39px;
+	color: #FFF;
+	margin: 0 auto;
+	background: rgb(79, 155, 202);
+	font-size: 18px;
+	text-align: center;
+	font-style: normal;
+	width: 100%;
+  border-style: none;
+	border-width: 1px 1px 3px;
+	margin-bottom: 10px;
+}
+.form2 input[type="submit"]:hover,
+.form2 input[type="button"]:hover
+{
+	background: #4c6761;
+  cursor: pointer;
+}
