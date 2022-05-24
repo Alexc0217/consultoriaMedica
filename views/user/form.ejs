@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>C1 - Login/Cadastro</title>
+    <style>
+        body {
+            --color-primary: rgb(79, 155, 202);
+            --color-primary-dark: rgb(132, 142, 148);
+            --color-error: #cc3333;
+            --color-success: rgb(3, 17, 26);
+            --border-radius: 4px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="/assets/favicon.ico" rel="shortcut icon">
+
+</head>
+
+<header>
+    <div class = "header-bar">C1</div>
+</header>
+
+<body>
+    <div class="container">
+        <%- include('../partials/_login') %>
+
+        <%- include('../partials/_createAccount') %>
+    </div>
+    <script src="/script/main.js"></script>
+</body>
