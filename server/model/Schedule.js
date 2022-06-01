@@ -5,7 +5,7 @@ const scheduleSchema = mongoose.Schema({
     email: {type: String, required: true},
     date: {type: Date, required: true},
     hour: {type: String, required: true},
-    state: {type: String, required: true}
+    unit: {type: String, required: true}
 })
 
 const Schedule = mongoose.model('Schedule', scheduleSchema);

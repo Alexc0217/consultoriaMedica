@@ -1,0 +1,30 @@
+<%- include('partials/_header');%>
+
+<body>
+    <div class="user">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Tipo de usuário</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            
+
+            <% for(var i = 0; i < data.length; i++) {%>
+                <tbody>
+                    <tr>
+                        <td><%= data[i].name%></td>
+                        <td><%= data[i].name%></td>
+                        <td><%= data[i].email%></td>
+                        <td><%= data[i].type%></td>
+                        <th><a href="/update-user?id=<%= data[i]._id%>">Edit</a></th>
+                    </tr>
+                </tbody>
+            <%}%>
+        </table>
+    </div>
+</body>    

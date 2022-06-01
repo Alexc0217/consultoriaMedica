@@ -2,31 +2,46 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>C1 - Login/Cadastro</title>
-    <style>
-        body {
-            --color-primary: rgb(79, 155, 202);
-            --color-primary-dark: rgb(132, 142, 148);
-            --color-error: #cc3333;
-            --color-success: rgb(3, 17, 26);
-            --border-radius: 4px;
-        }
-
-    </style>
+    <title>C1 - Cadastro</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
     <link rel="stylesheet" href="/css/style.css">
-    <link href="/assets/favicon.ico" rel="shortcut icon">
-
 </head>
 
 <header>
-    <div class = "header-bar">C1</div>
+  <div class = "header-bar">
+    <a href="/" class="title">C1</a>
+  </div>
 </header>
 
 <body>
-    <div class="container">
-        <%- include('../partials/_login') %>
+  <div class="form2">
+    <form action="/auth/user" method="POST" id="create">
+      <span style="color: rgb(207, 61, 61); font-family: arial; padding-bottom: 8px;"><%= message !== null ? message : ''%></span>
+      <input type="text" id="Nomecompleto" name="name" placeholder="Nome Completo" minlength = "4" maxlength="20" required>
+      
+      <input type="email" id="Email" name="email" placeholder="Email" required>
+      
+      <input type="password" id="password" name="password" placeholder="Senha" required>
 
-        <%- include('../partials/_createAccount') %>
-    </div>
-    <script src="/script/main.js"></script>
+      <input type="password" id="confirm_password" name="confirmaSenha" placeholder="Confirmar senha" required>
+
+      <button type="submit" value="Criar Conta">Criar Conta</button>
+    </form>
+  </div>
 </body>
+<script src="/account/account.js"></script>
+<script>
+  var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword;
+</script>

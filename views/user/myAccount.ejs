@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href = "/css/style.css" rel = "stylesheet">
+    <link href = "/views/user/form.ejs" rel = "stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>C1 - Minha Conta</title>
+  
+    <style>
+        .col-sm {
+        margin: 50px auto;
+        width: 80%;
+        height: 35vh;
+        background-color: white;
+        box-shadow: 5px 8px #9a8e8e;
+        border-radius: 30px;
+        border: 1px solid #efe2e2;
+        }
+
+        button{
+        background-color: red;
+        padding: 10px;
+        width: 40%;
+        }
+    </style>
+</head>
+
+<header>
+    <div class = "header-bar" style="padding-left: 20vh;">
+      <a href="/" class="title">C1</a>
+      <div style="float: right;">
+        <a href="/user/my-account/:id" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 20px; padding-top: 10px;" width="40" height="40" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg></a>
+        <p class="p1" style="margin: 0px 10px 4px;"><strong><%= data.name%></strong></p>
+     </div>
+    </div>
+</header>
+
+<body>
+  <div class="row">
+      <h1>MINHAS CONSULTAS</h1>
+      <div class="col-sm">
+          <table style="width:100%">
+              <caption></caption>
+              <tr>
+                <th>Nome</th>
+                <th>Data</th>
+                <th>hórario</th>
+                <th>Estado</th>
+              </tr>
+            </table>
+      </div>
+
+      <h1>MEUS DADOS</h1>
+      <div class="col-sm">
+          <p class="p2"><strong id="name">Nome: <%= data.name%></strong></p>
+          <p class="p2"><strong id="email">Email: <%= data.email%></strong></p>
+          <button type="submit" style="margin: 4vh auto" id="delete"><a href="/user/my-account/delete/<%= data._id%>" style="color: white;">Deletar conta</a></button>
+      </div>
+</body>     
+</html>
