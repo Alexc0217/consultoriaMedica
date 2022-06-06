@@ -50,7 +50,7 @@ exports.create = async (req, res) => {
     
     const userExist = await User.findOne({email: req.body.email});
     if(userExist){
-        return res.status(422).json({message: 'Email já cadastrado no banco de dados, utilize outro. '});
+        return res.render('user/form', {message: 'Email já cadastrado no banco de dados, utilize outro. ', user: {}})
     }
 
     try {
@@ -96,12 +96,12 @@ exports.login = async (req, res) => {
 
     const user = await User.findOne({email: req.body.email});
     if(!user){
-        return res.render('user/form', {message: "Essa conta não existe, crie uma. "});
+        return res.render('user/form', {message: "Essa conta não existe, crie uma. ", user: {}});
     }
 
     const checkPassword = await bcrypt.compare(password, user.password);
     if(!checkPassword){
-        return res.status(422).json({message: 'Senha inválida. '});
+        return res.render('user/login', {message: 'Senha inválida, tente novamente.', user: {}});
     }
 
     try{

@@ -34,6 +34,7 @@
 <body>
 
   <div class="form2">
+    <span style="color: rgb(207, 61, 61); font-family: arial; padding-bottom: 8px;"><%= message !== null ? message : ''%></span>
     <form action="/auth/user/login" method="POST" id="form-login">
       <input type="email" id="email" name="email" placeholder="Email" required>
       

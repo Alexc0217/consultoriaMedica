@@ -13,7 +13,7 @@ exports.form = (req, res) => {
 }
 
 exports.login = async (req, res) => {
-    res.render('user/login', {user: {}})
+    res.render('user/login', {message: '', user: {}})
 }
 
 exports.my_account = async (req, res) => {
@@ -22,19 +22,19 @@ exports.my_account = async (req, res) => {
     const user = await User.findById(id, '-password');
 
     if(!user){
-        return res.status(404).json({message: 'Usuário não encontrado'})
+        return res.status(404).json({message: 'Usuário não encontrado', user: {}})
     }
 
     const schedule = await Schedule.findById(user.schedule)
 
-    res.status(200).render('user/myAccount', {user: user, schedule: schedule});
+    res.status(200).render('user/myAccount', {message: '', user: user, schedule: schedule});
 }
 
 exports.users = (req, res) => {
     axios.get('http://localhost:3000/api/users/')
     .then(function(response){
         console.log(response.data)
-        res.render('users', {data: response.data, user: {}})
+        res.render('users', {message: '', data: response.data, user: {}})
     }).catch(err => {
         res.send(err);
     })
@@ -43,7 +43,7 @@ exports.users = (req, res) => {
 exports.update_user = (req, res) => {
     axios.get('http://localhost:3000/api/users', {params: {id: req.query.id}})
     .then(function(userdata){
-        res.render("update_user", {user: userdata.data})
+        res.render("update_user", {message: '', user: userdata.data})
     })
     .catch(err => {
         res.send(err);
@@ -54,7 +54,7 @@ exports.user_page = async (req, res) => {
     const id = req.params.id;
 
     const user = await User.findById(id, '-password');
-    res.render('user/user_page', {user: user})
+    res.render('user/user_page', {message: '', user: user})
 }
 
 //agendamentos
@@ -84,18 +84,18 @@ exports.schedule_form = async (req, res) => {
     if(!user){
         res.send("Você precisa estar logado para criar um agendamento.")
     }
-    res.render('schedule/form', {user: user, states: states, services: services})
+    res.render('schedule/form', {message: '', user: user, states: states, services: services})
 }
 
 exports.schedules = async (req, res) => {
     axios.get('http://localhost:3000/api/schedules/')
     .then(function(response){
-        res.render('schedule/schedules', {data: response.data, user: {}})
+        res.render('schedule/schedules', {message: '', data: response.data, user: {}})
     }).catch(err => {
         res.send(err);
     })
 }
 
 exports.page_not_found = async (req, res) => {
-    res.render('error/page_not_found', {user: {}})
+    res.render('error/page_not_found', {message: '', user: {}})
 }
