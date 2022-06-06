@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href = "/css/style.css" rel = "stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>HealthClinic</title>
+    </head>
+
+    <%- include('../partials/_header')%>
+
+    <body>
+        <div class="form2">
+            <form action="/schedule/form" method="POST">
+                <strong><label for="state">Estado:</label></strong>
+                <select name="state" id="state">
+                    <% for(var i = 0; i < states.length; i++){%>
+                        <option value="<%=states[i]%>"><%=states[i]%></option>
+                    <%}%>
+                </select>
+
+                <strong><label for="service">Serviço:</label></strong>
+                <select name="service" id="service">
+                    <% for(var i = 0; i < services.length; i++){%>
+                        <option value="<%= services[i]%>"><%=services[i]%></option>
+                    <%}%>
+                </select>
+
+                <strong><label for="unit">Unidades:</label></strong>
+                <select id="unit" name="unit" required>
+                    <option value="Unidade 1 - Rua Carlos Paes  123">Unidade 1 - Rua Carlos Paes 123</option>
+                    <option value="Unidade 2 - Rua Bento Júnior 324">Unidade 2 - Rua Bento Júnior 324</option>
+                </select>
+
+                <strong><label for="date">Data:</label></strong>
+                <input type="date" id="date" name="date" required>
+
+                <strong><label for="hour">Horário:</label></strong>
+                <input type="time" id="hour" name="hour" required>
+                <input type="text" name="id" id="id" value="<%=user._id%>" hidden>
+
+                
+                
+                <button type="submit" value="Agendar">Agendar Consuta</button>
+            </form>
+        </div>
+    </body>         
+</html>

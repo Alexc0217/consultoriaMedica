@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>HealthClinic</title>
 </head>
-<%- include('partials/_header');%>
+<%- include('../partials/_header');%>
 
 <body>
     <div class="user">
@@ -18,10 +18,13 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Tipo de usuário</th>
-                    <th>Actions</th>
+                    <th>Estado</th>
+                    <th>Serviço</th>
+                    <th>Unidade</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Nome do paciente</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             
@@ -30,10 +33,13 @@
                 <tbody>
                     <tr>
                         <td><strong><%= data[i]._id%></strong></td>
-                        <td><strong><%= data[i].name%></strong></td>
-                        <td><strong><%= data[i].email%></strong></td>
-                        <td><strong><%= data[i].type%></strong></td>
-                        <th><a href="/update-user?id=<%= data[i]._id%>">Edit</a></th>
+                        <td><strong><%= data[i].state%></strong></td>
+                        <td><strong><%= data[i].service%></strong></td>
+                        <td><strong><%= data[i].unit%></strong></td>
+                        <td><strong><%= data[i].date%></strong></td>
+                        <td><strong><%= data[i].hour%></strong></td>
+                        <td><strong><%= data[i].user.name%></strong></td>
+                        <td><strong><a href="">Desmarcar</a></strong></td>
                     </tr>
                 </tbody>
             <%}%>

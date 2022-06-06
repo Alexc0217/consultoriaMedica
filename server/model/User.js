@@ -5,6 +5,7 @@ const userSchema = mongoose.Schema({
     email: {type: String, required: true, index: {unique: true}},
     type: {type: String, required: false, default: "user"},
     password: {type: String, required: true},
+    schedule: {type: mongoose.Schema.Types.ObjectId, ref: 'Schedule', required: false},
     createdAt: {
         type: Date,
         default: new Date()

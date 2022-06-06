@@ -29,15 +29,8 @@
     </style>
 </head>
 
-<header>
-    <div class = "header-bar" style="padding-left: 20vh;">
-      <a href="/" class="title">C1</a>
-      <div style="float: right;">
-        <a href="/user/my-account/:id" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 20px; padding-top: 10px;" width="40" height="40" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg></a>
-        <p class="p1" style="margin: 0px 10px 4px;"><strong><%= data.name%></strong></p>
-     </div>
-    </div>
-</header>
+<%- include('../partials/_header');%>
+
 
 <body>
   <div class="row">
@@ -46,19 +39,40 @@
           <table style="width:100%">
               <caption></caption>
               <tr>
-                <th>Nome</th>
-                <th>Data</th>
-                <th>hórario</th>
                 <th>Estado</th>
+                <th>Serviço</th>
+                <th>Unidade</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Ações</th>
               </tr>
+              
+                <% if(schedule == undefined || Object.keys(schedule).length === 0){%>
+                    <h2 style="margin-left: 400px;">Você não tem nenhum agendamento. <a href="/schedule/form/<%= user._id%>">Clique aqui para agendar.</a></h2>
+                <%}else{%>
+                    <tr>
+                        <th><%= schedule.state%></th>
+                        <th><%= schedule.service%></th>
+                        <th><%= schedule.unit%></th>
+                        <th><%= schedule.date%></th>
+                        <th><%= schedule.hour%></th>
+                        <th><a href="/schedule/desmarcar/<%=schedule._id%>">Desmarcar</a></th>
+                    </tr>
+                <%}%>
             </table>
       </div>
 
       <h1>MEUS DADOS</h1>
       <div class="col-sm">
-          <p class="p2"><strong id="name">Nome: <%= data.name%></strong></p>
-          <p class="p2"><strong id="email">Email: <%= data.email%></strong></p>
-          <button type="submit" style="margin: 4vh auto" id="delete"><a href="/user/my-account/delete/<%= data._id%>" style="color: white;">Deletar conta</a></button>
+          <p class="p2"><strong id="name">Nome: <%= user.name%></strong></p>
+          <p class="p2"><strong id="email">Email: <%= user.email%></strong></p>
+          <button type="submit" style="margin: 4vh auto" id="delete" onclick="deleteConfirmation()"><a href="/user/my-account/delete/<%= user._id%>" style="color: white;">Deletar conta</a></button>
       </div>
 </body>     
 </html>
+
+<script>
+    function deleteConfirmation(){
+        alert("Sua conta foi apagada. ")
+    }
+</script>

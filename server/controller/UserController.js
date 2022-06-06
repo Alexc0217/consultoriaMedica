@@ -44,7 +44,8 @@ exports.create = async (req, res) => {
     const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: passwordHash
+        password: passwordHash,
+        schedule: null
     });
     
     const userExist = await User.findOne({email: req.body.email});
