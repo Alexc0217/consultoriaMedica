@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href = "/css/style.css" rel = "stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>HealthClinic | Dúvida</title>
+</head>
+
+<%- include('../partials/_header');%>
+
+
+<body>
+    <div class="form2">
+      <form action="/support" method="POST" onsubmit="send()" id="create">
+        <span style="color: rgb(207, 61, 61); font-family: arial; padding-bottom: 8px;"><%= message !== null ? message : ''%></span>
+        <input type="text" id="Nomecompleto" name="name" placeholder="Nome Completo" minlength = "4" maxlength="50" required>
+        
+        <input type="email" id="Email" name="email" placeholder="Email" required>
+        <textarea name="question" id="question" cols="30" rows="10" placeholder="Dúvida" required minlength="10" maxlength="600" style="resize: none;"></textarea>
+        
+        <button type="submit" value="Enviar" id="submit">Enviar</button>
+      </form>
+    </div>
+</body>
+<script>
+    function send(){
+      alert("Dúvida enviada com sucesso! Fique atento ao seu email.")
+      setTimeout(() => {
+        window.close()
+      }, 5);
+    }
+</script>

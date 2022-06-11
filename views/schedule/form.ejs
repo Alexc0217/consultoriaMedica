@@ -7,16 +7,16 @@
         <link href = "/css/style.css" rel = "stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>HealthClinic</title>
+        <title>HealthClinic | Agendamento</title>
     </head>
 
     <%- include('../partials/_header')%>
 
     <body>
         <div class="form2">
-            <form action="/schedule/form" method="POST">
+            <form action="/schedule/form" method="POST" id="form">
                 <strong><label for="state">Estado:</label></strong>
-                <select name="state" id="state">
+                <select name="state" id="state" onchange="getState()">
                     <% for(var i = 0; i < states.length; i++){%>
                         <option value="<%=states[i]%>"><%=states[i]%></option>
                     <%}%>
@@ -31,21 +31,76 @@
 
                 <strong><label for="unit">Unidades:</label></strong>
                 <select id="unit" name="unit" required>
-                    <option value="Unidade 1 - Rua Carlos Paes  123">Unidade 1 - Rua Carlos Paes 123</option>
-                    <option value="Unidade 2 - Rua Bento Júnior 324">Unidade 2 - Rua Bento Júnior 324</option>
+                    <option value="" id="optionUnit1"></option>
+                    <option value="" id="optionUnit2"></option>
                 </select>
 
                 <strong><label for="date">Data:</label></strong>
-                <input type="date" id="date" name="date" required>
+                <input type="date" id="date" name="date" min="2022-06-13" max="2022-07-13" required>
 
                 <strong><label for="hour">Horário:</label></strong>
-                <input type="time" id="hour" name="hour" required>
+                <input type="time" id="hour" name="hour" onchange="validHour()" min="6:00" max="18:30" required>
+                <span id="timeError" style="color: rgb(207, 61, 61); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding-bottom: 8px;"></span>
                 <input type="text" name="id" id="id" value="<%=user._id%>" hidden>
-
-                
                 
                 <button type="submit" value="Agendar">Agendar Consuta</button>
             </form>
         </div>
-    </body>         
+    </body>   
+    <script>
+        var submit = document.getElementById("form")
+        var state = document.getElementById("state");
+        var service = document.getElementById("service");
+        var unit = document.getElementById("unit");
+        var date = document.getElementById("date");
+        var timeError = document.getElementById("timeError");
+        var hour = document.getElementById("hour");
+        var optionUnit = document.getElementById("optionUnit1")
+        var optionUnit2 = document.getElementById("optionUnit2")
+        service.style.color = "black"
+        unit.style.color = "black"
+        state.style.color = "black"
+        hour.style.color = "black"
+        
+        function validHour(){
+            let horas = hour.value.toString();
+            console.log(horas)
+            if(horas >= "06:00" && horas <= "18:30"){
+                timeError.innerHTML = ""
+            }else{
+                timeError.innerHTML = "Horário não permitido, escolha um horário entre 6:00 e 18:00. "
+                console.log("não permite")
+            }
+        }
+
+        function getState(){
+            if(state.value === "São Paulo"){
+                optionUnit1.innerHTML = "São Paulo - Rua Carlos Paes  123"
+                optionUnit1.value = "São Paulo - Rua Carlos Paes  123"
+
+                optionUnit2.innerHTML = "São Paulo - Rua Bento Júnior 324"
+                optionUnit2.value = "São Paulo - Rua Carlos Paes  123"
+            }else if(state.value === "Rio de Janeiro"){
+                optionUnit1.innerHTML = "Rio de Janeiro - Rua Xavier Alcantara 1988"
+                optionUnit1.value = "Rio de Janeiro - Rua Xavier Alcantara 1988"
+
+                optionUnit2.innerHTML = "Rio de Janeiro - Rua José do Verde 420"
+                optionUnit2.value = "Rio de Janeiro - Rua José do Verde 420"
+
+            }else if(state.value === "Bahia"){
+                optionUnit1.innerHTML = "Bahia - Rua Gancho Enferrujado 778"
+                optionUnit1.value = "Bahia - Rua Gancho Enferrujado 778"
+
+                optionUnit2.innerHTML = "Bahia - Avenida dos Galantes 5444"
+                optionUnit2.value = "Bahia - Avenida dos Galantes 5444"
+            }else{
+                optionUnit1.innerHTML = ""
+                optionUnit1.value = ""
+
+                optionUnit2.innerHTML = ""
+                optionUnit2.value = ""
+            }
+        }
+
+    </script>      
 </html>

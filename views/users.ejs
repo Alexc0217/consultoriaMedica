@@ -8,7 +8,7 @@
     <link href = "/css/style.css" rel = "stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>HealthClinic</title>
+    <title>HealthClinic | Usuários</title>
 </head>
 <%- include('partials/_header');%>
 
@@ -33,10 +33,21 @@
                         <td><strong><%= data[i].name%></strong></td>
                         <td><strong><%= data[i].email%></strong></td>
                         <td><strong><%= data[i].type%></strong></td>
-                        <th><a href="/update-user?id=<%= data[i]._id%>">Edit</a></th>
+                        <th>
+                            <button class="btn btn-primary button-table"><a href="/update-user?id=<%= data[i]._id%>">Editar</a></button>
+                            <button onclick="deleteAccount(`<%= data[i].name%>`)" class="btn btn-danger button-table"><a href="/user/my-account/delete/<%= data[i]._id%>">Deletar</a></button>
+                        </th>
                     </tr>
                 </tbody>
             <%}%>
         </table>
     </div>
+    <script>
+        function deleteAccount(name){
+            alert(`o usuário ${name} foi deletado com sucesso. `)
+            window.open(
+                'http://localhost:3000/admin/users'
+            )
+        }
+    </script>
 </body>    

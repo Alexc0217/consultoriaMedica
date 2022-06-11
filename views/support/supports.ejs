@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/util.css">
+    <link href = "/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>HealthClinic | Dúvidas</title>
+</head>
+<%- include('../partials/_header');%>
+
+<body>
+    <div class="user">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Pergunta</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <% for(var i = 0; i < data.length; i++) {%>
+                <tbody>
+                    <tr>
+                        <td><strong><%= data[i].name%></strong></td>
+                        <td><strong><%= data[i].email%></strong></td>
+                        <td>
+                            <strong>
+                            <button class="btn" onclick="openModal('dv-modal', '<%= data[i].name%>', '<%= data[i].question%>')">Ver pergunta</button>
+                                <div id="dv-modal" class="modal">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 id="contentHeader"></h1>
+                                        </div>
+                            
+                                        <div class="modal-body">
+                                            <textarea name="" id="contentBody" cols="69" rows="10" readonly></textarea>
+                                        </div>
+                            
+                                        <div class="modal-footer">
+                                            <button class="btn" onclick="closeModal('dv-modal')">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </strong>     
+                        </td>
+                        <td><strong><%= data[i].createdAt%></strong></td>
+                    </tr>
+                </tbody>
+            <%}%>
+        </table>
+    </div>
+</body>
+<script src="/script/util.js"></script>

@@ -1,7 +1,8 @@
 const axios = require('axios');
 const async = require('../../node_modules/async');
 const Schedule = require('../model/Schedule');
-const User = require('../model/User')
+const User = require('../model/User');
+const Support = require('../model/Support')
 const util = require('util');
 
 exports.homeRoutes = (req, res) => {
@@ -71,9 +72,19 @@ exports.schedule_form = async (req, res) => {
 
     const services = [
         "Selecione",
-        "Urologista",
+        "Fisioterapia",
         "Pediatra",
-        "Clínico geral"
+        "Clínico geral",
+        "Cardiologista"
+    ]
+
+    const units = [
+        "São Paulo - Rua Carlos Paes  123",
+        "São Paulo - Rua Bento Júnior 324",
+        "Rio de Janeiro - Rua Xavier Alcantara 1988",
+        "Rio de Janeiro - Rua José do Verde 420",
+        "Bahia - Rua Gancho Enferrujado 778",
+        "Bahia - Avenida dos Galantes 5444"
     ]
 
     const user = await User.findById(id, '-password');
@@ -84,7 +95,7 @@ exports.schedule_form = async (req, res) => {
     if(!user){
         res.send("Você precisa estar logado para criar um agendamento.")
     }
-    res.render('schedule/form', {message: '', user: user, states: states, services: services})
+    res.render('schedule/form', {message: '', user: user, states: states, services: services, units: units})
 }
 
 exports.schedules = async (req, res) => {
@@ -95,6 +106,22 @@ exports.schedules = async (req, res) => {
         res.send(err);
     })
 }
+
+
+// support
+exports.support = async (req, res) => {
+    res.render('support/support', {message: '', user: {}})
+}
+
+exports.supports = async (req, res) => {
+    questions = Support.find({})
+        .then((response) => {
+            res.status(200).render('support/supports', {data: response, message: '', user: {}});
+        }).catch((error) => {
+            res.status(404).send("deu erro aqui");
+        })
+}
+
 
 exports.page_not_found = async (req, res) => {
     res.render('error/page_not_found', {message: '', user: {}})
