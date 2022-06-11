@@ -3,7 +3,6 @@ const async = require('../../node_modules/async');
 const Schedule = require('../model/Schedule');
 const User = require('../model/User');
 const Support = require('../model/Support')
-const util = require('util');
 
 exports.homeRoutes = (req, res) => {
     res.render('index', {user: {}});
@@ -26,7 +25,7 @@ exports.my_account = async (req, res) => {
         return res.status(404).json({message: 'Usuário não encontrado', user: {}})
     }
 
-    const schedule = await Schedule.findById(user.schedule)
+    const schedule = await Schedule.findById(user.schedule);
 
     res.status(200).render('user/myAccount', {message: '', user: user, schedule: schedule});
 }
@@ -78,15 +77,6 @@ exports.schedule_form = async (req, res) => {
         "Cardiologista"
     ]
 
-    const units = [
-        "São Paulo - Rua Carlos Paes  123",
-        "São Paulo - Rua Bento Júnior 324",
-        "Rio de Janeiro - Rua Xavier Alcantara 1988",
-        "Rio de Janeiro - Rua José do Verde 420",
-        "Bahia - Rua Gancho Enferrujado 778",
-        "Bahia - Avenida dos Galantes 5444"
-    ]
-
     const user = await User.findById(id, '-password');
     if(user.schedule != null){
         res.redirect("http://localhost:3000/user/my-account/" + user._id)
@@ -95,7 +85,7 @@ exports.schedule_form = async (req, res) => {
     if(!user){
         res.send("Você precisa estar logado para criar um agendamento.")
     }
-    res.render('schedule/form', {message: '', user: user, states: states, services: services, units: units})
+    res.render('schedule/form', {message: '', user: user, states: states, services: services})
 }
 
 exports.schedules = async (req, res) => {

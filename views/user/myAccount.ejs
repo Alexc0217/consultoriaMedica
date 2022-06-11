@@ -8,7 +8,7 @@
     <link href = "/views/user/form.ejs" rel = "stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mohave:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>C1 - Minha Conta</title>
+    <title>HealthClinic | Minha Conta</title>
   
     <style>
         .col-sm {
@@ -72,6 +72,13 @@
 </html>
 
 <script>
+    let scheduleHour = document.getElementById("scheduleHour")
+    
+    function formatHour(hour){
+        scheduleHour.innerHTML = hour
+    }
+    
+
     function deleteConfirmation(){
         alert("Sua conta foi apagada. ")
     }

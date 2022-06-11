@@ -4,7 +4,6 @@ const Schedule = require('../model/Schedule.js')
 const async = require('../../node_modules/async')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { deleteOne } = require("../model/User.js");
 
 
 exports.find = (req, res) => {
@@ -24,11 +23,12 @@ exports.find = (req, res) => {
             })
 
     }else{
-        User.find().then(data => {
-            res.send(data)
-        }).catch(err => {
-            res.status(500).send({message: err.message || "não foi possível achar os usuários. "})
-        })
+        User.find()
+            .then(data => {
+                res.send(data)
+            }).catch(err => {
+                res.status(500).send({message: err.message || "não foi possível achar os usuários. "})
+            })
     }
 }
 
