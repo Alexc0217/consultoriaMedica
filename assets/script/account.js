@@ -24,5 +24,3 @@ $("#update").submit(function(event){
     })
 
 })
-
-const form = document.getElementById("form-login");

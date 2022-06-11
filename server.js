@@ -9,7 +9,7 @@ const morgan = require('morgan');
 
 const app = express();
 
-const uri = "mongodb+srv://<>:<>@cluster0.fshmw.mongodb.net/?retryWrites=true&w=majority"
+const uri = "mongodb+srv://alex:2222@cluster0.fshmw.mongodb.net/?retryWrites=true&w=majority"
 
 dotenv.config({path:'config.env'})
 const PORT = process.env.PORT || 5000;
