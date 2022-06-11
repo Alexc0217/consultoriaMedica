@@ -5,6 +5,7 @@ const route = express.Router();
 const services = require('../services/render');
 const userController = require('../controller/UserController');
 const scheduleController = require('../controller/ScheduleController');
+const supportController = require('../controller/SupportController');
 
 /**
  *  @description Root Route
@@ -40,6 +41,11 @@ route.get('/schedule/form/:id', services.schedule_form);
 route.post('/schedule/form', scheduleController.create);
 route.get('/api/schedules', scheduleController.schedules);
 route.get('/schedule/desmarcar/:id', scheduleController.delete);
+
+//suporte / dúvidas
+route.get('/support', services.support);
+route.post('/support',  supportController.send);
+route.get("/supports", services.supports);
 
 route.get('*', services.page_not_found);
 module.exports = route

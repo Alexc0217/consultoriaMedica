@@ -1,8 +1,10 @@
 const { default: axios } = require("axios");
 const User = require("../model/User.js");
+const Schedule = require('../model/Schedule.js')
 const async = require('../../node_modules/async')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { deleteOne } = require("../model/User.js");
 
 
 exports.find = (req, res) => {
@@ -62,13 +64,22 @@ exports.create = async (req, res) => {
     }
 }
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     if(!req.body){
         return res.status(400).send({message: "data empty"})
     }
 
     const id = req.params.id;
-    User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+    
+    const salt = await bcrypt.genSalt(12);
+    const passwordHash = await bcrypt.hash(req.body.password, salt);
+    const updatedUser = {
+        name: req.body.name,
+        email: req.body.email,
+        type: req.body.type,
+        password: passwordHash
+    }
+    User.findByIdAndUpdate(id, updatedUser, { useFindAndModify: false})
         .then(data => {
             if(!data){
                 res.status(404).send({ message : `Cannot Update user with ${id}. Maybe user not found!`})
@@ -81,13 +92,35 @@ exports.update = (req, res) => {
         })
 }
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id
-    User.findByIdAndDelete(id, (err, result) => {
-        if (err) throw err;
 
-        res.redirect('/')
-    })
+    User.findById(id)
+        .then((response) => {
+            console.log(response)
+            if(response.schedule != null){
+                User.findById(id).populate('schedule')
+                    .then((userSuccess) => {
+                        Schedule.findByIdAndDelete(userSuccess.schedule._id)
+                        .then((scheduleSuccess) => {
+                            res.status(200);
+                        }).catch((error) => {
+                            console.log(error);
+                        })
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+            }
+            User.findByIdAndDelete(response._id)
+                .then((success) => {
+                    res.status(200).redirect('/');
+                }).catch((error) => {
+                    res.status(404).send(error);
+                })            
+        }).catch((error) => {
+            res.status(404).send(error);
+            console.log("error");
+        })
 }
 
 exports.login = async (req, res) => {

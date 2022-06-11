@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+p {
+    text-align: justify;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 900px;
+    background-color: #eee;
+    padding: 10px;
+}
+
+.btn {
+    background-color: rgb(59, 181, 230);
+    padding: 5px 10px 5px 10px;
+    border: 2px solid rgba(2, 26, 77, 0.486);
+    cursor: pointer;
+    transition: background .3s;
+    border-radius: 5px;
+    color: #FFF;
+    width: 130px;
+    height: 40px;
+}
+
+.btn:hover {
+    background-color: rgb(1, 77, 121);
+    color: white;
+}
+
+.btn:active {
+    background-color: rgb(2, 117, 133);
+    color: rgb(0, 0, 0);
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+.modal-content {
+    margin: 0 auto;
+    margin-top: 3%;
+    max-width: 600px;
+    background-color: rgb(236, 230, 230);
+    padding: 0;
+    box-shadow: 0 0 2px rgb(73, 12, 129);
+}
+
+.modal-header h1{
+    font-weight: bold;
+    text-align: center;
+}
+
+.modal-body, .modal-footer{
+    padding: 10px;
+}
+
+.modal-header{
+    padding-bottom: 90px;
+    background-color: rgb(79, 155, 202);
+    height: 100px;
+}
+
+.modal-footer{
+    background-color: rgb(79, 155, 202);
+}
+
+#contentBody{
+    resize: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(163, 206, 235);
+}

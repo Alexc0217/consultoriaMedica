@@ -9,7 +9,7 @@ const morgan = require('morgan');
 
 const app = express();
 
-const uri = "mongodb+srv://<user>:<password>@cluster0.fshmw.mongodb.net/?retryWrites=true&w=majority"
+const uri = "mongodb+srv://<>:<>@cluster0.fshmw.mongodb.net/?retryWrites=true&w=majority"
 
 dotenv.config({path:'config.env'})
 const PORT = process.env.PORT || 5000;
@@ -28,6 +28,6 @@ app.use('/bootstrap', express.static(path.resolve(__dirname, "node_modules/boots
 
 app.use('/', require('./server/routes/router.js'));
 
-mongoose.connect(uri, )
+mongoose.connect(uri)
     .then(() => app.listen(PORT, () => console.log(`Server running on porttt ${PORT}`)))
     .catch((error) => console.log(error.message))
