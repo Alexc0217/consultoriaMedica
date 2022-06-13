@@ -38,8 +38,8 @@
                         <td><strong><%= data[i].unit%></strong></td>
                         <td><strong><%= data[i].date%></strong></td>
                         <td><strong><%= data[i].hour%></strong></td>
-                        <td><strong><%= data[i].user.name%></strong></td>
-                        <td><strong><a href="">Desmarcar</a></strong></td>
+                        <td><strong><%= data[i].user != null ? data[i].user.name : '' %></strong></td>
+                        <td><strong><a href="/schedule/desmarcar/<%=data[i]._id%>">Desmarcar</a></strong></td>
                     </tr>
                 </tbody>
             <%}%>
