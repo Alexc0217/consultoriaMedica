@@ -66,7 +66,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     if(!req.body){
-        return res.status(400).send({message: "data empty"})
+        return res.status(400).send({message: "Formulário vazio. "})
     }
 
     const id = req.params.id;
@@ -79,16 +79,17 @@ exports.update = async (req, res) => {
         type: req.body.type,
         password: passwordHash
     }
+
     User.findByIdAndUpdate(id, updatedUser, { useFindAndModify: false})
         .then(data => {
             if(!data){
-                res.status(404).send({ message : `Cannot Update user with ${id}. Maybe user not found!`})
+                res.status(404).send({ message : `Não conseguimos atualizar o usuário do id ${id}. Usuário não encontrado.`})
             }else{
                 res.send(data)
             }
         })
         .catch(err => {
-            res.status(500).send({message: "Error update user information. "})
+            res.status(500).send({message: "Erro ao atualizar o usuário. "})
         })
 }
 
